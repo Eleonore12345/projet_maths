@@ -2,4 +2,6 @@ This is actually a test.
 -written from remote, then cloning, good
 - written from remote, after cloning, after pulling, good
 
-- written from local, then simple push
+- written from local, then simple push, good
+
+- written from remote, then pull
