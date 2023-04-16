@@ -1,7 +1,21 @@
-This is actually a test.
--written from remote, then cloning, good
-- written from remote, after cloning, after pulling, good
+Coucouuuu
+En gros on va avoir : un repository commun en ligne qui s'appelle par défaut origin pour le pc (pour nous projet_maths)
+Chacune (stv) un repository local sur nos pc qui sera lié au repository commun 
+Et chacune nos fichiers sur nos PC
+Du coup faudra faire le lien commun->perso->fichiers (la dernière flèche se fait automatiquement dans ce sens) et fichiers->perso->commun à chaque fois mais en vrai avec l'habitude ça va devenir rapide
 
-- written from local, then simple push, good
+###Initialisation :
+te créer un dossier Windows classique pour le projet, (pour accéder au terminal windows dans le dossier direct tu peux faire cmd entrée dans la barre d'adresse quand t'es dans le dossier)
+faire git clone https://github.com/Eleonore12345/projet_maths
+faire git pull puis vérifier que tu as bien le READ_ME avec tout ça dedans, dans ton dossier Windows
 
-- written from remote, then pull
+###Utilisation :
+1) avant chaque séance de travail, faire un git pull (important sinon tu vas modifier une ancienne version et ce sera chiant de les refusionner) (commun->perso->fichiers)
+2) tu peux vérifier que tout va bien avec git status MAIS c'est pas fiable, parfois y a un délai de fou, donc faut git pull même si le status te dit que t'es up-to-date avec la version origin en ligne
+3) faire tes bails
+4) faire un git add pour mettre dans la salle d'attente des changements (fichiers->perso étape 1)
+5) tu peux vérifier avec git status et là normalement de tes fichiers à ton repository local c'est fiable
+6) faire git commit (fichiers->perso étape 2 finale), tu peux faire git commit -m "ici je décris ce que j'ai modifié" c'est super pratique pour se retrouver dans les versions après
+7) faire git push (perso->commun)
+
+et voilàààà bisous 
