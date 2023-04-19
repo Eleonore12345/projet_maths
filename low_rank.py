@@ -17,9 +17,10 @@ R=main.userItemMatrixCreation(User,Item,baseUserItem)
 
 ### Averaging ###
 
-#fig,axs=plt.subplots(3)
-#axs[0].imshow(R,interpolation=None)
-#axs[0].set_title("R")
+fig1,axs=plt.subplots(3)
+fig1.suptitle("Visualisation des matrices R, Rr et Rc")
+axs[0].imshow(R,interpolation=None)
+axs[0].set_title("R")
 #By row
 Rr=R.copy()
 for i in range(Rr.shape[0]) : 
@@ -36,8 +37,8 @@ for i in range(Rr.shape[0]) :
     for j in range(Rr.shape[1]):
         if Rr[i,j]==0:
             Rr[i,j]=moy
-#axs[1].imshow(Rr,interpolation=None)
-#axs[1].set_title("Rr")
+axs[1].imshow(Rr,interpolation=None)
+axs[1].set_title("Rr")
 #By column
 Rc=R.copy()
 for i in range(Rc.shape[1]) : 
@@ -54,9 +55,9 @@ for i in range(Rc.shape[1]) :
     for j in range(Rr.shape[0]):
         if Rc[j,i]==0:
             Rc[j,i]=moy
-#axs[2].imshow(Rc,interpolation=None)
-#axs[2].set_title("Rc")
-#plt.show()
+axs[2].imshow(Rc,interpolation=None)
+axs[2].set_title("Rc")
+plt.show()
 
 ### Method featureMatrices ###
 def featureMatrices(k,U,S,VH):
@@ -93,6 +94,7 @@ for k in rangeK:
 pl.plot(rangeK, MAE_Rc, '-+')
 pl.xlabel('number of features k')
 pl.ylabel('MAE with Rc')
+pl.title("Values of the MAE as a function of the rank k, for Rc")
 pl.show()
 #Comparison with naive predictions with Rc
 naivePrediction_Rc=[]
@@ -125,6 +127,7 @@ for k in rangeK:
 pl.plot(rangeK, MAE_Rr, '-+')
 pl.xlabel('number of features k')
 pl.ylabel('MAE with Rr')
+pl.title("Values of the MAE as a function of the rank k, for Rr")
 pl.show()
 #Case of naive predictions with Rr
 naivePrediction_Rr=[]
@@ -146,12 +149,13 @@ with Rr, naive MAE :  0.8501912740150434  MAE for k=min :  0.8049271515519592
 #There is a bigger difference with respect to the naive version for Rr however the MAE to be chosen is Rc because it is the smallest
 
 ### Robustness ###
-#for u1: Rc, k=15, MAE = 0.7895
-#for u2: Rc, k=13, MAE = 0.7768
-#for u3: Rc, k=10, MAE = 0.7706
-#for u4: Rc, k=17, MAE = 0.7703
-#for u5: Rc, k=16, MAE = 0.7904
 """
+for u1: Rc, k=15, MAE = 0.7895
+for u2: Rc, k=13, MAE = 0.7768
+for u3: Rc, k=10, MAE = 0.7706
+for u4: Rc, k=17, MAE = 0.7703
+for u5: Rc, k=16, MAE = 0.7904
+
 The quality of our prediction is robust: Rc is always to be chosen. 
 The value of k varies between 10 and 16, which can be seen as a lot
 however we can see on the graphs that for values of ks in this range, the MAEs always stay low and do not vary much
