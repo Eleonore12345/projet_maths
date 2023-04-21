@@ -43,9 +43,8 @@ def alsq(nbrIter,nbrFeatures,lmbd,R,test):
         for i in range(ni):
             # Compute the least-square problem for Yi
             n=np.shape((2*X.T@np.diag(W[:,i])@X))[0]
-            print(np.linalg.inv((2*(X.T))@np.diag(W[:,i])@X+2*lmbd*np.identity(n))@(2*(R[:,i].T)))
-            Y[:,i]=(np.linalg.inv((2*(X.T))@np.diag(W[:,i])@X+2*lmbd*np.identity(n)))@(2*(R[:,i].T))@(np.diag(W[:,i]))@X
-            # np.linalg.lstsq(X,Yi)
+            # Y[:,i]=(np.linalg.inv((2*(X.T))@np.diag(W[:,i])@X+2*lmbd*np.identity(n)))@(2*(R[:,i].T))@(np.diag(W[:,i]))@X
+            Y[:,i]=(np.linalg.inv((2*(X.T))@np.diag(W[:,i])@X+2*lmbd*np.identity(n)))@(2*(X.T))@(np.diag(W[:,i]))@(R[:,i])
         prediction = [np.dot(X[(r['user']-1),:],Y[:,(r['movie']-1)]) for r in test]
         # compute the errors
         trueRating = [r['rating'] for r in testUserItem]
@@ -56,4 +55,4 @@ def alsq(nbrIter,nbrFeatures,lmbd,R,test):
         
     return X,Y,MAE_alsq
 
-alsq(5,2,0.05,R,testUserItem)
+print(alsq(5,2,0.05,R,testUserItem))
