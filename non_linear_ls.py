@@ -39,16 +39,14 @@ def alsq(nbrIter,nbrFeatures,lmbd,R,test):
         for u in range(nu):
             # Compute the least-square problem for Xu
             n=np.shape((2*Y@np.diag(W[u,:])@Y.T))[0]
-            Xu=((np.linalg.inv((2*Y)@np.diag(W[u,:])@Y.T+2*lmbd*np.identity(n)))@(2*Y)@(np.diag(W[u,:]))@(R[u,:].T)).T
-            print(Xu)
-            np.linalg.lstsq(Xu,Y)
+            X[u,:]=((np.linalg.inv((2*Y)@np.diag(W[u,:])@Y.T+2*lmbd*np.identity(n)))@(2*Y)@(np.diag(W[u,:]))@(R[u,:].T)).T
         for i in range(ni):
             # Compute the least-square problem for Yi
             n=np.shape((2*X.T@np.diag(W[:,i])@X))[0]
-            Yi=np.linalg.inv((2*X.T)@np.diag(W[:,i])@X+2*lmbd*np.identity(n))@(2*R[:,i].T)@np.diag(W[:,i])@X
-            np.linalg.lstsq(X,Yi)
-        prediction = [np.dot(X[(r['user']-1),:],Y[:,(r['movie']-1)])
-        for r in test]
+            print(np.linalg.inv((2*(X.T))@np.diag(W[:,i])@X+2*lmbd*np.identity(n))@(2*(R[:,i].T)))
+            Y[:,i]=(np.linalg.inv((2*(X.T))@np.diag(W[:,i])@X+2*lmbd*np.identity(n)))@(2*(R[:,i].T))@(np.diag(W[:,i]))@X
+            # np.linalg.lstsq(X,Yi)
+        prediction = [np.dot(X[(r['user']-1),:],Y[:,(r['movie']-1)]) for r in test]
         # compute the errors
         trueRating = [r['rating'] for r in testUserItem]
         errorRating = np.asmatrix(prediction)-np.asmatrix(trueRating)
