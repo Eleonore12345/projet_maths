@@ -69,3 +69,4 @@ nu=len(User)
 ni=len(Item)
 ########## Testing the alsq method and finding the best MAE ##########
 print(alsq(5,2,0.05,R,testUserItem))
+print(alsq(7,2,0.03,R,testUserItem))
